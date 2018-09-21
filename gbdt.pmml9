@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML version="4.3" xmlns="http://www.dmg.org/PMML-4_3" xmlns:data="http://jpmml.org/jpmml-model/InlineTable">
+    <Header>
+        <Application name="JPMML-SparkML" version="1.4.5"/>
+        <Timestamp>2018-09-21T07:56:56Z</Timestamp>
+    </Header>
+    <DataDictionary>
+        <DataField name="1013" optype="categorical" dataType="string">
+            <Value value="14246401412233225735"/>
+            <Value value="12519699247896025331"/>
+            <Value value="7744290166010982719"/>
+            <Value value="11537632286417681943"/>
+            <Value value="17857405177860158792"/>
+            <Value value="16517291440781032100"/>
+            <Value value="5692837378748711219"/>
+        </DataField>
+        <DataField name="10013" optype="categorical" dataType="string">
+            <Value value="402788895916821208"/>
+            <Value value="2432493504491803166"/>
+            <Value value="5973421002578997601"/>
+            <Value value="15283829587415937527"/>
+            <Value value="14008643524848111324"/>
+            <Value value="15037019144192383240"/>
+            <Value value="8722277501078472508"/>
+            <Value value="15938322212515863252"/>
+            <Value value="16905138940238913535"/>
+        </DataField>
+        <DataField name="1514" optype="continuous" dataType="integer"/>
+        <DataField name="8004" optype="continuous" dataType="integer"/>
+        <DataField name="8012" optype="continuous" dataType="integer"/>
+        <DataField name="2503" optype="continuous" dataType="integer"/>
+        <DataField name="2504" optype="continuous" dataType="integer"/>
+        <DataField name="2505" optype="continuous" dataType="integer"/>
+        <DataField name="2506" optype="continuous" dataType="integer"/>
+        <DataField name="2507" optype="continuous" dataType="integer"/>
+        <DataField name="2508" optype="continuous" dataType="integer"/>
+        <DataField name="2509" optype="continuous" dataType="integer"/>
+        <DataField name="9001" optype="continuous" dataType="integer"/>
+        <DataField name="9004" optype="continuous" dataType="integer"/>
+        <DataField name="10005" optype="continuous" dataType="integer"/>
+        <DataField name="10010" optype="continuous" dataType="integer"/>
+        <DataField name="label" optype="categorical" dataType="integer">
+            <Value value="0"/>
+            <Value value="1"/>
+        </DataField>
+    </DataDictionary>
+    <TransformationDictionary>
+        <DerivedField name="float(1514)" optype="continuous" dataType="float">
+            <FieldRef field="1514"/>
+        </DerivedField>
+        <DerivedField name="float(8004)" optype="continuous" dataType="float">
+            <FieldRef field="8004"/>
+        </DerivedField>
+        <DerivedField name="float(8012)" optype="continuous" dataType="float">
+            <FieldRef field="8012"/>
+        </DerivedField>
+        <DerivedField name="float(2503)" optype="continuous" dataType="float">
+            <FieldRef field="2503"/>
+        </DerivedField>
+        <DerivedField name="float(2504)" optype="continuous" dataType="float">
+            <FieldRef field="2504"/>
+        </DerivedField>
+        <DerivedField name="float(2505)" optype="continuous" dataType="float">
+            <FieldRef field="2505"/>
+        </DerivedField>
+        <DerivedField name="float(2506)" optype="continuous" dataType="float">
+            <FieldRef field="2506"/>
+        </DerivedField>
+        <DerivedField name="float(2507)" optype="continuous" dataType="float">
+            <FieldRef field="2507"/>
+        </DerivedField>
+        <DerivedField name="float(2508)" optype="continuous" dataType="float">
+            <FieldRef field="2508"/>
+        </DerivedField>
+        <DerivedField name="float(2509)" optype="continuous" dataType="float">
+            <FieldRef field="2509"/>
+        </DerivedField>
+        <DerivedField name="float(9001)" optype="continuous" dataType="float">
+            <FieldRef field="9001"/>
+        </DerivedField>
+        <DerivedField name="float(9004)" optype="continuous" dataType="float">
+            <FieldRef field="9004"/>
+        </DerivedField>
+        <DerivedField name="float(10005)" optype="continuous" dataType="float">
+            <FieldRef field="10005"/>
+        </DerivedField>
+        <DerivedField name="float(10010)" optype="continuous" dataType="float">
+            <FieldRef field="10010"/>
+        </DerivedField>
+    </TransformationDictionary>
+    <MiningModel functionName="classification" algorithmName="XGBoost" x-mathContext="float">
+        <MiningSchema>
+            <MiningField name="label" usageType="target"/>
+            <MiningField name="8012"/>
+            <MiningField name="2505"/>
+            <MiningField name="2506"/>
+            <MiningField name="2503"/>
+            <MiningField name="2508"/>
+            <MiningField name="2509"/>
+            <MiningField name="9001"/>
+            <MiningField name="2504"/>
+            <MiningField name="10010"/>
+            <MiningField name="2507"/>
+            <MiningField name="9004"/>
+            <MiningField name="1514"/>
+            <MiningField name="8004"/>
+            <MiningField name="1013"/>
+            <MiningField name="10013"/>
+            <MiningField name="10005"/>
+        </MiningSchema>
+        <Segmentation multipleModelMethod="modelChain">
+            <Segment id="1">
+                <True/>
+                <MiningModel functionName="regression" x-mathContext="float">
+                    <MiningSchema>
+                        <MiningField name="8012"/>
+                        <MiningField name="2505"/>
+                        <MiningField name="2506"/>
+                        <MiningField name="2503"/>
+                        <MiningField name="2508"/>
+                        <MiningField name="2509"/>
+                        <MiningField name="9001"/>
+                        <MiningField name="2504"/>
+                        <MiningField name="10010"/>
+                        <MiningField name="2507"/>
+                        <MiningField name="9004"/>
+                        <MiningField name="1514"/>
+                        <MiningField name="8004"/>
+                        <MiningField name="1013"/>
+                        <MiningField name="10013"/>
+                        <MiningField name="10005"/>
+                    </MiningSchema>
+                    <Output>
+                        <OutputField name="xgbValue" optype="continuous" dataType="float" feature="predictedValue" isFinalResult="false"/>
+                    </Output>
+                    <Segmentation multipleModelMethod="sum">
+                        <Segment id="1">
+                            <True/>
+                            <TreeModel functionName="regression" missingValueStrategy="defaultChild" splitCharacteristic="binarySplit" x-mathContext="float">
+                                <MiningSchema>
+                                    <MiningField name="1013"/>
+                                    <MiningField name="10013"/>
+                                    <MiningField name="1514"/>
+                                    <MiningField name="8004"/>
+                                    <MiningField name="8012"/>
+                                    <MiningField name="2503"/>
+                                    <MiningField name="2504"/>
+                                    <MiningField name="2505"/>
+                                    <MiningField name="2506"/>
+                                    <MiningField name="2507"/>
+                                    <MiningField name="2508"/>
+                                    <MiningField name="2509"/>
+                                    <MiningField name="9001"/>
+                                    <MiningField name="9004"/>
+                                    <MiningField name="10005"/>
+                                    <MiningField name="10010"/>
+                                </MiningSchema>
+                                <Node id="1" defaultChild="3">
+                                    <True/>
+                                    <Node id="2" defaultChild="4">
+                                        <SimplePredicate field="float(9004)" operator="lessThan" value="0.999999"/>
+                                        <Node id="4" score="-0.5438435">
+                                            <SimplePredicate field="float(2506)" operator="lessThan" value="1.999999"/>
+                                        </Node>
+                                        <Node id="5" defaultChild="9">
+                                            <SimplePredicate field="float(2506)" operator="greaterOrEqual" value="1.999999"/>
+                                            <Node id="8" score="-0.27272728">
+                                                <SimplePredicate field="float(2503)" operator="lessThan" value="3.999999"/>
+                                            </Node>
+                                            <Node id="9" score="-0.0">
+                                                <SimplePredicate field="float(2503)" operator="greaterOrEqual" value="3.999999"/>
+                                            </Node>
+                                        </Node>
+                                    </Node>
+                                    <Node id="3" defaultChild="6">
+                                        <SimplePredicate field="float(9004)" operator="greaterOrEqual" value="0.999999"/>
+                                        <Node id="6" defaultChild="11">
+                                            <SimplePredicate field="float(2503)" operator="lessThan" value="1.999999"/>
+                                            <Node id="10" defaultChild="14">
+                                                <SimplePredicate field="float(1514)" operator="lessThan" value="4079.0"/>
+                                                <Node id="14" defaultChild="23">
+                                                    <SimplePredicate field="10013" operator="notEqual" value="5973421002578997601"/>
+                                                    <Node id="22" defaultChild="36">
+                                                        <SimplePredicate field="float(2504)" operator="lessThan" value="0.999999"/>
+                                                        <Node id="36" score="0.15">
+                                                            <SimplePredicate field="1013" operator="notEqual" value="11537632286417681943"/>
+                                                        </Node>
+                                                        <Node id="37" score="-0.17647061">
+                                                            <SimplePredicate field="1013" operator="equal" value="11537632286417681943"/>
+                                                        </Node>
+                                                    </Node>
+                                                    <Node id="23" defaultChild="39">
+                                                        <SimplePredicate field="float(2504)" operator="greaterOrEqual" value="0.999999"/>
+                                                        <Node id="38" score="-0.45000002">
+                                                            <SimplePredicate field="float(10005)" operator="lessThan" value="0.999999"/>
+                                                        </Node>
+                                                        <Node id="39" score="-0.0">
+                                                            <SimplePredicate field="float(10005)" operator="greaterOrEqual" value="0.999999"/>
+                                                        </Node>
+                                                    </Node>
+                                                </Node>
+                                                <Node id="15" defaultChild="24">
+                                                    <SimplePredicate field="10013" operator="equal" value="5973421002578997601"/>
+                                                    <Node id="24" defaultChild="40">
+                                                        <SimplePredicate field="float(9001)" operator="lessThan" value="1.999999"/>
+                                                        <Node id="40" score="-0.33913043">
+                                                            <SimplePredicate field="10013" operator="notEqual" value="8722277501078472508"/>
+                                                        </Node>
+                                                        <Node id="41" score="-0.48985836">
+                                                            <SimplePredicate field="10013" operator="equal" value="8722277501078472508"/>
+                                                        </Node>
+                                                    </Node>
+                                                    <Node id="25" defaultChild="42">
+                                                        <SimplePredicate field="float(9001)" operator="greaterOrEqual" value="1.999999"/>
+                                                        <Node id="42" score="-0.04615385">
+                                                            <SimplePredicate field="1013" operator="notEqual" value="12519699247896025331"/>
+                                                        </Node>
+                                                        <Node id="43" score="-0.392">
+                                                            <SimplePredicate field="1013" operator="equal" value="12519699247896025331"/>
+                                                        </Node>
+                                                    </Node>
+                                                </Node>
+                                            </Node>
+                                            <Node id="11" defaultChild="16">
+                                                <SimplePredicate field="float(1514)" operator="greaterOrEqual" value="4079.0"/>
+                                                <Node id="16" score="0.06666667">
+                                                    <SimplePredicate field="10013" operator="notEqual" value="14008643524848111324"/>
+                                                </Node>
+                                                <Node id="17" defaultChild="26">
+                                                    <SimplePredicate field="10013" operator="equal" value="14008643524848111324"/>
+                                                    <Node id="26" defaultChild="45">
+                                                        <SimplePredicate field="10013" operator="notEqual" value="15037019144192383240"/>
+                                                        <Node id="44" score="-0.33333337">
+                                                            <SimplePredicate field="float(2503)" operator="lessThan" value="1.999999"/>
+                                                        </Node>
+                                                        <Node id="45" score="0.05454546">
+                                                            <SimplePredicate field="float(2503)" operator="greaterOrEqual" value="1.999999"/>
+                                                        </Node>
+                                                    </Node>
+                                                    <Node id="27" defaultChild="46">
+                                                        <SimplePredicate field="10013" operator="equal" value="15037019144192383240"/>
+                                                        <Node id="46" score="-0.42857146">
+                                                            <SimplePredicate field="float(2504)" operator="lessThan" value="0.999999"/>
+                                                        </Node>
+                                                        <Node id="47" score="-0.16363637">
+                                                            <SimplePredicate field="float(2504)" operator="greaterOrEqual" value="0.999999"/>
+                                                        </Node>
+                                                    </Node>
+                                                </Node>
+                                            </Node>
+                                        </Node>
+                                        <Node id="7" defaultChild="13">
+                                            <SimplePredicate field="float(2503)" operator="greaterOrEqual" value="1.999999"/>
+                                            <Node id="12" defaultChild="19">
+                                                <SimplePredicate field="float(1514)" operator="lessThan" value="1571.0"/>
+                                                <Node id="18" defaultChild="28">
+                                                    <SimplePredicate field="float(8004)" operator="lessThan" value="5.999999"/>
+                                                    <Node id="28" score="-0.40000004">
+                                                        <SimplePredicate field="float(2509)" operator="lessThan" value="0.999999"/>
+                                                    </Node>
+                                                    <Node id="29" defaultChild="49">
+                                                        <SimplePredicate field="float(2509)" operator="greaterOrEqual" value="0.999999"/>
+                                                        <Node id="48" score="-0.33333337">
+                                                            <SimplePredicate field="float(9001)" operator="lessThan" value="2.999999"/>
+                                                        </Node>
+                                                        <Node id="49" score="0.060000002">
+                                                            <SimplePredicate field="float(9001)" operator="greaterOrEqual" value="2.999999"/>
+                                                        </Node>
+                                                    </Node>
+                                                </Node>
+                                                <Node id="19" defaultChild="31">
+                                                    <SimplePredicate field="float(8004)" operator="greaterOrEqual" value="5.999999"/>
+                                                    <Node id="30" defaultChild="50">
+                                                        <SimplePredicate field="float(2508)" operator="lessThan" value="0.999999"/>
+                                                        <Node id="50" score="-0.384">
+                                                            <SimplePredicate field="float(2507)" operator="lessThan" value="2.999999"/>
+                                                        </Node>
+                                                        <Node id="51" score="-0.13548388">
+                                                            <SimplePredicate field="float(2507)" operator="greaterOrEqual" value="2.999999"/>
+                                                        </Node>
+                                                    </Node>
+                                                    <Node id="31" defaultChild="52">
+                                                        <SimplePredicate field="float(2508)" operator="greaterOrEqual" value="0.999999"/>
+                                                        <Node id="52" score="-0.46865675">
+                                                            <SimplePredicate field="float(9004)" operator="lessThan" value="2.999999"/>
+                                                        </Node>
+                                                        <Node id="53" score="-0.23478262">
+                                                            <SimplePredicate field="float(9004)" operator="greaterOrEqual" value="2.999999"/>
+                                                        </Node>
+                                                    </Node>
+                                                </Node>
+                                            </Node>
+                                            <Node id="13" defaultChild="21">
+                                                <SimplePredicate field="float(1514)" operator="greaterOrEqual" value="1571.0"/>
+                                                <Node id="20" defaultChild="33">
+                                                    <SimplePredicate field="float(2503)" operator="lessThan" value="2.999999"/>
+                                                    <Node id="32" defaultChild="55">
+                                                        <SimplePredicate field="float(8012)" operator="lessThan" value="1.999999"/>
+                                                        <Node id="54" score="-0.056250002">
+                                                            <SimplePredicate field="float(10010)" operator="lessThan" value="0.999999"/>
+                                                        </Node>
+                                                        <Node id="55" score="-0.38823533">
+                                                            <SimplePredicate field="float(10010)" operator="greaterOrEqual" value="0.999999"/>
+                                                        </Node>
+                                                    </Node>
+                                                    <Node id="33" defaultChild="56">
+                                                        <SimplePredicate field="float(8012)" operator="greaterOrEqual" value="1.999999"/>
+                                                        <Node id="56" score="-0.06666667">
+                                                            <SimplePredicate field="1013" operator="notEqual" value="12519699247896025331"/>
+                                                        </Node>
+                                                        <Node id="57" score="-0.42857146">
+                                                            <SimplePredicate field="1013" operator="equal" value="12519699247896025331"/>
+                                                        </Node>
+                                                    </Node>
+                                                </Node>
+                                                <Node id="21" defaultChild="34">
+                                                    <SimplePredicate field="float(2503)" operator="greaterOrEqual" value="2.999999"/>
+                                                    <Node id="34" defaultChild="58">
+                                                        <SimplePredicate field="1013" operator="notEqual" value="12519699247896025331"/>
+                                                        <Node id="58" score="-0.3">
+                                                            <SimplePredicate field="float(2509)" operator="lessThan" value="1.999999"/>
+                                                        </Node>
+                                                        <Node id="59" score="0.120000005">
+                                                            <SimplePredicate field="float(2509)" operator="greaterOrEqual" value="1.999999"/>
+                                                        </Node>
+                                                    </Node>
+                                                    <Node id="35" defaultChild="61">
+                                                        <SimplePredicate field="1013" operator="equal" value="12519699247896025331"/>
+                                                        <Node id="60" score="-0.1826087">
+                                                            <SimplePredicate field="float(2505)" operator="lessThan" value="1.999999"/>
+                                                        </Node>
+                                                        <Node id="61" score="-0.4928572">
+                                                            <SimplePredicate field="float(2505)" operator="greaterOrEqual" value="1.999999"/>
+                                                        </Node>
+                                                    </Node>
+                                                </Node>
+                                            </Node>
+                                        </Node>
+                                    </Node>
+                                </Node>
+                            </TreeModel>
+                        </Segment>
+                    </Segmentation>
+                </MiningModel>
+            </Segment>
+            <Segment id="2">
+                <True/>
+                <RegressionModel functionName="classification" normalizationMethod="logit" x-mathContext="float">
+                    <MiningSchema>
+                        <MiningField name="label" usageType="target"/>
+                        <MiningField name="xgbValue"/>
+                    </MiningSchema>
+                    <Output>
+                        <OutputField name="pmml(prediction)" optype="categorical" dataType="integer" feature="predictedValue"/>
+                        <OutputField name="prediction" optype="categorical" dataType="double" feature="transformedValue">
+                            <MapValues outputColumn="data:output">
+                                <FieldColumnPair field="pmml(prediction)" column="data:input"/>
+                                <InlineTable>
+                                    <row>
+                                        <data:input>0</data:input>
+                                        <data:output>0</data:output>
+                                    </row>
+                                    <row>
+                                        <data:input>1</data:input>
+                                        <data:output>1</data:output>
+                                    </row>
+                                </InlineTable>
+                            </MapValues>
+                        </OutputField>
+                        <OutputField name="probability(0)" optype="continuous" dataType="float" feature="probability" value="0"/>
+                        <OutputField name="probability(1)" optype="continuous" dataType="float" feature="probability" value="1"/>
+                    </Output>
+                    <RegressionTable intercept="0.0" targetCategory="1">
+                        <NumericPredictor name="xgbValue" coefficient="1.0"/>
+                    </RegressionTable>
+                    <RegressionTable intercept="0.0" targetCategory="0"/>
+                </RegressionModel>
+            </Segment>
+        </Segmentation>
+    </MiningModel>
+</PMML>
